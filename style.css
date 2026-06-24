@@ -116,3 +116,36 @@ footer p {
         padding: 15px;
     }
 }
+/* --- Estilização das Imagens --- */
+.imagem-responsiva {
+    width: 100%;
+    max-height: 400px;
+    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
+    border-radius: 8px;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: block;
+}
+
+/* Ajuste específico para a imagem que fica entre o título e os artigos */
+.img-meio {
+    margin-bottom: 30px;
+}
+
+/* Ajuste de layout para telas maiores na seção Sobre */
+@media (min-width: 768px) {
+    #sobre {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+    .sobre-conteudo {
+        flex: 1;
+    }
+    #sobre .imagem-responsiva {
+        flex: 1;
+        margin-top: 0;
+        max-height: 300px;
+    }
+}
+
