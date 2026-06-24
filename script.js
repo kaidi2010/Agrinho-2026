@@ -56,3 +56,20 @@ document.addEventListener("DOMContentLoaded", () => {
     // Executa a saudação inicial
     saudarUsuario();
 });
+    // 4. Efeito Interativo nas Imagens
+    const imagens = document.querySelectorAll(".imagem-responsiva");
+
+    imagens.forEach(img => {
+        img.style.transition = "transform 0.4s ease, filter 0.4s ease";
+        img.style.cursor = "pointer";
+
+        img.addEventListener("mouseenter", () => {
+            img.style.transform = "scale(1.02)"; // Efeito de zoom sutil
+            img.style.filter = "brightness(1.05)"; // Deixa a imagem levemente mais brilhante
+        });
+
+        img.addEventListener("mouseleave", () => {
+            img.style.transform = "scale(1)";
+            img.style.filter = "brightness(1)";
+        });
+    });
