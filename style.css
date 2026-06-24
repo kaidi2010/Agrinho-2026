@@ -1,151 +1,191 @@
-/* --- Configurações Globais --- */
+/* --- Reset e Variáveis Globais --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+
+:root {
+    --primary-color: #1b4332;   /* Verde Escuro Corporativo */
+    --secondary-color: #40916c; /* Verde Médio */
+    --text-dark: #2d3748;       /* Grafite escuro */
+    --bg-light: #f7fafc;        /* Off-white */
+    --card-bg: #ffffff;
 }
 
 body {
-    background-color: #f4f7f4;
-    color: #333333;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
     line-height: 1.6;
 }
 
-/* --- Cabeçalho (Header) --- */
-header {
-    background-color: #2e6f40; /* Verde folha/campo */
+/* --- Cabeçalho --- */
+.main-header {
+    background: linear-gradient(135deg, var(--primary-color), #081c15);
     color: #ffffff;
+    padding: 60px 20px;
     text-align: center;
-    padding: 40px 20px;
+    border-bottom: 4px solid var(--secondary-color);
 }
 
-header h1 {
+.header-container h1 {
     font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.header-container p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* --- Container Geral --- */
+.content-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* --- Galeria de Imagens --- */
+.image-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.image-wrapper {
+    background: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.agro-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.img-caption {
+    display: block;
+    padding: 15px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--primary-color);
+    border-top: 1px solid #edf2f7;
+}
+
+/* --- Seção de Flashcards --- */
+.flashcard-section {
+    margin-top: 20px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.section-subtitle {
+    color: #718096;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.flashcards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* --- Estrutura 3D do Flashcard --- */
+.card {
+    height: 200px;
+    perspective: 1000px; /* Cria o ambiente 3D */
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+/* Classe aplicada via JS para girar o card */
+.card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden; /* Esconde o verso quando virado */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.card-front {
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    border: 1px solid #e2e8f0;
+    border-bottom: 4px solid var(--primary-color);
+}
+
+.card-front h3 {
+    font-size: 1.25rem;
     margin-bottom: 10px;
 }
 
-header p {
-    font-size: 1.1rem;
-    font-style: italic;
-    opacity: 0.9;
-    margin-bottom: 20px;
+.hint {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-/* --- Navegação (Menu) --- */
-nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-nav a {
+.card-back {
+    background-color: var(--primary-color);
     color: #ffffff;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    transform: rotateY(180deg);
+    font-size: 0.95rem;
 }
 
-nav a:hover {
-    background-color: #1e4d2b;
-}
-
-/* --- Estrutura de Seções --- */
-section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-section h2 {
-    color: #2e6f40;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 10px;
-}
-
-/* --- Artigos (Práticas) --- */
-article {
-    margin-bottom: 25px;
-    padding: 15px;
-    border-left: 4px solid #8b5a2b; /* Tom terra/madeira */
-    background-color: #f9fbf9;
-    border-radius: 0 4px 4px 0;
-}
-
-article h3 {
-    color: #8b5a2b;
-    margin-bottom: 8px;
-}
-
-/* --- Rodapé (Footer) --- */
-footer {
-    background-color: #1e291f; /* Verde escuro quase preto */
-    color: #ffffff;
+/* --- Rodapé --- */
+.main-footer {
     text-align: center;
-    padding: 30px 20px;
+    padding: 30px;
+    background-color: #081c15;
+    color: #a0aec0;
     margin-top: 60px;
     font-size: 0.9rem;
 }
 
-footer p {
-    margin-bottom: 5px;
-    opacity: 0.8;
-}
-
-/* --- Responsividade (Celulares) --- */
-@media (max-width: 600px) {
-    header h1 {
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+    .image-gallery {
+        grid-template-columns: 1fr;
+    }
+    
+    .header-container h1 {
         font-size: 2rem;
     }
-    
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    section {
-        margin: 20px;
-        padding: 15px;
-    }
-}
-/* --- Estilização das Imagens --- */
-.imagem-responsiva {
-    width: 100%;
-    max-height: 400px;
-    object-fit: cover; /* Faz a imagem preencher o espaço sem distorcer */
-    border-radius: 8px;
-    margin-top: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    display: block;
 }
 
-/* Ajuste específico para a imagem que fica entre o título e os artigos */
-.img-meio {
-    margin-bottom: 30px;
-}
-
-/* Ajuste de layout para telas maiores na seção Sobre */
-@media (min-width: 768px) {
-    #sobre {
-        display: flex;
-        align-items: center;
-        gap: 30px;
-    }
-    .sobre-conteudo {
-        flex: 1;
-    }
-    #sobre .imagem-responsiva {
-        flex: 1;
-        margin-top: 0;
-        max-height: 300px;
-    }
-}
 
